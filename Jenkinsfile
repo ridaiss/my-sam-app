@@ -40,14 +40,10 @@ pipeline{
         }
 
         stage("Integration Test"){
-            environment{
-                // Get the stack name
-                AWS_SAM_STACK_NAME = $(grep "stack_name" samconfig.toml | head -n 1 | cut -d '"' -f 2)
-            }
-
             steps{
                  sh '''
                     . venv/bin/activate
+                    export AWS_SAM_STACK_NAME=$(grep "stack_name" samconfig.toml | head -n 1 | cut -d '"' -f 2)
                     python3 -m pytest tests/integration
                 '''
             }
