@@ -35,7 +35,7 @@ pipeline{
             }
 
             steps{
-                sh "sam deploy -t template.yaml --no-confirm-changeset --no-fail-on-empty-changeset"
+                sh "sam deploy -t template.yaml --region us-east-1 --no-confirm-changeset --no-fail-on-empty-changeset"
             }
         }
     }
